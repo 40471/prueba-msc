@@ -1,0 +1,258 @@
+{
+  "schema": "drawio-skill/diagram-ir/v1",
+  "metadata": {
+    "title": "Plataforma de datos e IA mscope - version 2",
+    "description": "Arquitectura AWS alineada con Glue/PySpark, Bedrock AgentCore, Spring Boot y React-Redux; separa clasificacion de baja latencia, OLAP y lenguaje natural."
+  },
+  "nodes": [
+    {
+      "id": "batch-sources",
+      "label": "SFTP + Teradata + Redshift actual\nCSV, Parquet e historico",
+      "kind": "external",
+      "group": "1. Fuentes",
+      "groupLabel": "1. Fuentes",
+      "width": 230,
+      "height": 80,
+      "properties": {"trust_boundary": "external", "importance": 5}
+    },
+    {
+      "id": "web-sources",
+      "label": "Webs corporativas + noticias\n+ redes sociales",
+      "kind": "external",
+      "group": "1. Fuentes",
+      "width": 220,
+      "height": 80,
+      "properties": {"trust_boundary": "internet", "importance": 4}
+    },
+    {
+      "id": "transfer",
+      "label": "AWS Transfer Family\nSFTP administrado",
+      "kind": "gateway",
+      "group": "2. Ingesta y orquestacion",
+      "groupLabel": "2. Ingesta y orquestacion",
+      "width": 190,
+      "height": 70,
+      "properties": {"owner": "Data Platform", "technology": "AWS Transfer Family", "trust_boundary": "aws"}
+    },
+    {
+      "id": "batch-orchestration",
+      "label": "EventBridge + Step Functions Standard\nCalendario, .sync, retry y auditoria",
+      "kind": "gateway",
+      "group": "2. Ingesta y orquestacion",
+      "width": 250,
+      "height": 80,
+      "properties": {"owner": "Data Platform", "technology": "AWS Step Functions", "trust_boundary": "private", "importance": 4}
+    },
+    {
+      "id": "glue-ingestion",
+      "label": "AWS Glue JDBC + PySpark\nWatermarks y extraccion incremental",
+      "kind": "service",
+      "group": "2. Ingesta y orquestacion",
+      "width": 230,
+      "height": 80,
+      "properties": {"owner": "Data Platform", "technology": "AWS Glue", "trust_boundary": "private", "importance": 5}
+    },
+    {
+      "id": "scrape-queue",
+      "label": "Amazon SQS + DLQ\nBackpressure y aislamiento",
+      "kind": "queue",
+      "group": "2. Ingesta y orquestacion",
+      "width": 200,
+      "height": 70,
+      "properties": {"owner": "Data Platform", "technology": "Amazon SQS", "trust_boundary": "private"}
+    },
+    {
+      "id": "scrape-workers",
+      "label": "ECS Fargate - scrapers\nRate limit por dominio + autoscaling",
+      "kind": "service",
+      "group": "2. Ingesta y orquestacion",
+      "width": 230,
+      "height": 80,
+      "properties": {"owner": "Data Platform", "technology": "Amazon ECS on AWS Fargate", "trust_boundary": "private", "importance": 4}
+    },
+    {
+      "id": "raw-lake",
+      "label": "Amazon S3 Raw\nInmutable, cifrado y reproducible",
+      "kind": "database",
+      "group": "3. Lakehouse gobernado",
+      "groupLabel": "3. Lakehouse gobernado",
+      "width": 220,
+      "height": 80,
+      "properties": {"owner": "Data Platform", "technology": "Amazon S3", "trust_boundary": "data", "data_classification": "confidential", "importance": 5}
+    },
+    {
+      "id": "glue-transform",
+      "label": "AWS Glue PySpark + Data Quality\nNormaliza, deduplica, resuelve y calcula",
+      "kind": "service",
+      "group": "3. Lakehouse gobernado",
+      "width": 250,
+      "height": 80,
+      "properties": {"owner": "Data Platform", "technology": "AWS Glue and Glue Data Quality", "trust_boundary": "data", "importance": 5}
+    },
+    {
+      "id": "curated-lake",
+      "label": "Amazon S3 / Apache Iceberg\nSilver + Gold + documentos curados",
+      "kind": "database",
+      "group": "3. Lakehouse gobernado",
+      "width": 240,
+      "height": 80,
+      "properties": {"owner": "Data Platform", "technology": "Amazon S3 and Apache Iceberg", "trust_boundary": "data", "data_classification": "confidential", "importance": 5}
+    },
+    {
+      "id": "governance",
+      "label": "Glue Data Catalog + Lake Formation\nCatalogo y permisos por pais",
+      "kind": "service",
+      "group": "3. Lakehouse gobernado",
+      "width": 230,
+      "height": 80,
+      "style": "rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;",
+      "properties": {"owner": "Data Governance", "technology": "AWS Lake Formation", "trust_boundary": "security", "importance": 4}
+    },
+    {
+      "id": "redshift-marts",
+      "label": "Amazon Redshift - marts serving\nReusar actual; aislar schemas y workload",
+      "kind": "database",
+      "group": "4. Analitica y clasificacion",
+      "groupLabel": "4. Analitica y clasificacion",
+      "width": 250,
+      "height": 80,
+      "properties": {"owner": "Analytics", "technology": "Amazon Redshift", "trust_boundary": "data", "importance": 5, "decision": "Reuse first; test Serverless for isolation"}
+    },
+    {
+      "id": "scoring",
+      "label": "Glue/PySpark scoring\nBatch semanal + mini-batch afectado",
+      "kind": "service",
+      "group": "4. Analitica y clasificacion",
+      "width": 230,
+      "height": 80,
+      "properties": {"owner": "Data Science and Data Platform", "technology": "AWS Glue and Apache Spark", "trust_boundary": "data", "importance": 4}
+    },
+    {
+      "id": "score-store",
+      "label": "Amazon DynamoDB\nUltimo score por pais/tenant + empresa",
+      "kind": "database",
+      "group": "4. Analitica y clasificacion",
+      "width": 240,
+      "height": 80,
+      "properties": {"owner": "Application", "technology": "Amazon DynamoDB", "trust_boundary": "serving", "importance": 5, "access_pattern": "GetItem by authorization partition and company_id"}
+    },
+    {
+      "id": "analysts",
+      "label": "Analistas financieros",
+      "kind": "actor",
+      "group": "5. Aplicacion y GenAI",
+      "groupLabel": "5. Aplicacion y GenAI",
+      "width": 180,
+      "height": 65,
+      "style": "rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;",
+      "properties": {"trust_boundary": "user", "importance": 5}
+    },
+    {
+      "id": "web-edge",
+      "label": "CloudFront + WAF + Cognito\nReact-Redux en S3 + JWT",
+      "kind": "gateway",
+      "group": "5. Aplicacion y GenAI",
+      "width": 230,
+      "height": 80,
+      "properties": {"owner": "Application", "technology": "Amazon CloudFront, AWS WAF, Amazon Cognito and Amazon S3", "trust_boundary": "edge", "importance": 5}
+    },
+    {
+      "id": "spring-api",
+      "label": "Spring Boot API en ECS Fargate\nALB, multi-AZ y autorizacion",
+      "kind": "service",
+      "group": "5. Aplicacion y GenAI",
+      "width": 240,
+      "height": 80,
+      "properties": {"owner": "Application", "technology": "Amazon ECS on AWS Fargate and Application Load Balancer", "trust_boundary": "application", "importance": 5}
+    },
+    {
+      "id": "agent-runtime",
+      "label": "Bedrock AgentCore Runtime (AG-UI)\nSupervisor + agentes SQL y research",
+      "kind": "service",
+      "group": "5. Aplicacion y GenAI",
+      "width": 260,
+      "height": 85,
+      "style": "rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;",
+      "properties": {"owner": "AI Platform", "technology": "Amazon Bedrock AgentCore Runtime", "trust_boundary": "ai", "importance": 5, "protocol": "AG-UI"}
+    },
+    {
+      "id": "agent-gateway",
+      "label": "AgentCore Gateway + SQL tool\nVistas allowlist, limites y timeout",
+      "kind": "gateway",
+      "group": "5. Aplicacion y GenAI",
+      "width": 240,
+      "height": 80,
+      "style": "rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;",
+      "properties": {"owner": "AI Platform", "technology": "Amazon Bedrock AgentCore Gateway", "trust_boundary": "ai", "importance": 4}
+    },
+    {
+      "id": "managed-kb",
+      "label": "Bedrock Managed Knowledge Base\nRetrieve con metadatos y citas",
+      "kind": "database",
+      "group": "5. Aplicacion y GenAI",
+      "width": 240,
+      "height": 80,
+      "style": "rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;",
+      "properties": {"owner": "AI Platform", "technology": "Amazon Bedrock Managed Knowledge Bases", "trust_boundary": "ai", "importance": 4}
+    },
+    {
+      "id": "security",
+      "label": "KMS + IAM + Secrets Manager + CloudTrail\nMinimo privilegio y auditoria",
+      "kind": "service",
+      "group": "6. Operacion transversal",
+      "groupLabel": "6. Operacion transversal",
+      "width": 260,
+      "height": 80,
+      "style": "rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;",
+      "properties": {"owner": "Security", "trust_boundary": "security", "importance": 5, "intentional_orphan": true, "scope": "cross-cutting"}
+    },
+    {
+      "id": "observability",
+      "label": "CloudWatch + OpenTelemetry\nMetricas, logs, trazas y alarmas",
+      "kind": "service",
+      "group": "6. Operacion transversal",
+      "width": 230,
+      "height": 80,
+      "style": "rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;",
+      "properties": {"owner": "Platform", "technology": "Amazon CloudWatch and OpenTelemetry", "trust_boundary": "operations", "importance": 5, "intentional_orphan": true, "scope": "cross-cutting"}
+    },
+    {
+      "id": "cicd",
+      "label": "CI/CD + Amazon ECR\nTests, escaneo y rollback",
+      "kind": "service",
+      "group": "6. Operacion transversal",
+      "width": 210,
+      "height": 70,
+      "properties": {"owner": "Platform", "technology": "Amazon ECR and CI/CD", "trust_boundary": "operations", "importance": 3, "intentional_orphan": true, "scope": "cross-cutting"}
+    }
+  ],
+  "edges": [
+    {"id": "source-transfer", "source": "batch-sources", "target": "transfer", "label": "SFTP semanal", "kind": "sync", "properties": {"protocol": "SFTP"}},
+    {"id": "source-glue", "source": "batch-sources", "target": "glue-ingestion", "label": "JDBC / UNLOAD incremental", "kind": "sync", "properties": {"data": "structured"}},
+    {"id": "orchestrate-glue", "source": "batch-orchestration", "target": "glue-ingestion", "label": "job .sync + retry", "kind": "control", "properties": {"workflow": "Standard"}},
+    {"id": "orchestrate-scrape", "source": "batch-orchestration", "target": "scrape-queue", "label": "URLs priorizadas", "kind": "async", "properties": {"async": true, "isolates_failure": true}},
+    {"id": "queue-workers", "source": "scrape-queue", "target": "scrape-workers", "label": "trabajo desacoplado", "kind": "async", "properties": {"async": true, "isolates_failure": true}},
+    {"id": "web-workers", "source": "web-sources", "target": "scrape-workers", "label": "HTTPS con rate limit", "kind": "sync", "properties": {"protocol": "HTTPS"}},
+    {"id": "transfer-raw", "source": "transfer", "target": "raw-lake", "label": "CSV / Parquet", "kind": "async", "properties": {"async": true}},
+    {"id": "glue-raw", "source": "glue-ingestion", "target": "raw-lake", "label": "snapshot + watermark", "kind": "async", "properties": {"async": true}},
+    {"id": "workers-raw", "source": "scrape-workers", "target": "raw-lake", "label": "contenido + procedencia", "kind": "async", "properties": {"async": true}},
+    {"id": "raw-transform", "source": "raw-lake", "target": "glue-transform", "label": "incrementos", "kind": "async", "properties": {"async": true}},
+    {"id": "transform-curated", "source": "glue-transform", "target": "curated-lake", "label": "MERGE + cuarentena", "kind": "sync", "properties": {"data": "structured and documents"}},
+    {"id": "govern-curated", "source": "governance", "target": "curated-lake", "label": "catalogo + permisos", "kind": "control", "properties": {"data_classification": "confidential"}},
+    {"id": "curated-redshift", "source": "curated-lake", "target": "redshift-marts", "label": "Gold incremental", "kind": "async", "properties": {"async": true}},
+    {"id": "curated-scoring", "source": "curated-lake", "target": "scoring", "label": "features versionadas", "kind": "async", "properties": {"async": true}},
+    {"id": "curated-kb", "source": "curated-lake", "target": "managed-kb", "label": "sync documentos curados", "kind": "async", "properties": {"async": true}},
+    {"id": "scoring-store", "source": "scoring", "target": "score-store", "label": "upsert condicionado por version", "kind": "async", "properties": {"async": true}},
+    {"id": "analyst-web", "source": "analysts", "target": "web-edge", "label": "HTTPS", "kind": "sync", "properties": {"protocol": "HTTPS"}},
+    {"id": "web-api", "source": "web-edge", "target": "spring-api", "label": "HTTPS + JWT", "kind": "sync", "properties": {"protocol": "HTTPS"}},
+    {"id": "api-score", "source": "spring-api", "target": "score-store", "label": "GetItem / BatchGetItem", "kind": "sync", "properties": {"timeout": "classification end-to-end p95 <500ms"}},
+    {"id": "api-redshift", "source": "spring-api", "target": "redshift-marts", "label": "dashboards y analitica", "kind": "sync", "properties": {"data": "structured"}},
+    {"id": "api-agent", "source": "spring-api", "target": "agent-runtime", "label": "chat streaming AG-UI", "kind": "sync", "properties": {"protocol": "AG-UI"}},
+    {"id": "agent-kb", "source": "agent-runtime", "target": "managed-kb", "label": "Retrieve + citas", "kind": "sync", "properties": {"data": "unstructured"}},
+    {"id": "agent-tools", "source": "agent-runtime", "target": "agent-gateway", "label": "MCP tools allowlist", "kind": "sync", "properties": {"protocol": "MCP"}},
+    {"id": "tool-redshift", "source": "agent-gateway", "target": "redshift-marts", "label": "plantillas / vistas read-only", "kind": "sync", "properties": {"timeout": "bounded query", "data": "structured"}},
+    {"id": "security-observability", "source": "security", "target": "observability", "label": "cifrado y auditoria", "kind": "control", "properties": {}},
+    {"id": "cicd-observability", "source": "cicd", "target": "observability", "label": "versiones y despliegues", "kind": "control", "properties": {}}
+  ],
+  "views": []
+}

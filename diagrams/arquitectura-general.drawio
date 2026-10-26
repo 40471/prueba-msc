@@ -1,0 +1,343 @@
+<mxfile host="app.diagrams.net" agent="diagram-ir">
+  <diagram id="system" name="System">
+    <mxGraphModel dx="1884" dy="-323" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="7qvGO8kN7DKlxgH0tU9M-270" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#6c8ebf;fontColor=#6c8ebf;verticalAlign=top;fontStyle=2;dashed=1;" value="1. Fuentes" vertex="1">
+          <mxGeometry height="128" width="518" x="1246.0042857142853" y="1512.0028571428568" as="geometry" />
+        </mxCell>
+        <mxCell id="7qvGO8kN7DKlxgH0tU9M-271" data-boundary="external" data-kind="external" data-model-id="batch-sources" data-properties="{&quot;trust_boundary&quot;:&quot;external&quot;,&quot;importance&quot;:5}" data-provenance="{&quot;path&quot;:&quot;/home/env/mscope-prueba/solucion-test-2/arquitectura.ir.json&quot;}" data-source-label="SFTP + Teradata + Redshift actual&#xa;CSV, Parquet e historico" data-source-properties="{&quot;trust_boundary&quot;:&quot;external&quot;,&quot;importance&quot;:5}" parent="7qvGO8kN7DKlxgH0tU9M-270" style="rounded=1;whiteSpace=wrap;html=1;dashed=1;fillColor=#f5f5f5;strokeColor=#666666;" value="SFTP + Teradata + Redshift actual&#xa;CSV, Parquet e historico" vertex="1">
+          <mxGeometry height="80" width="230" x="24" y="24" as="geometry" />
+        </mxCell>
+        <mxCell id="7qvGO8kN7DKlxgH0tU9M-272" data-boundary="internet" data-kind="external" data-model-id="web-sources" data-properties="{&quot;trust_boundary&quot;:&quot;internet&quot;,&quot;importance&quot;:4}" data-provenance="{&quot;path&quot;:&quot;/home/env/mscope-prueba/solucion-test-2/arquitectura.ir.json&quot;}" data-source-label="Webs corporativas + noticias&#xa;+ redes sociales" data-source-properties="{&quot;trust_boundary&quot;:&quot;internet&quot;,&quot;importance&quot;:4}" parent="7qvGO8kN7DKlxgH0tU9M-270" style="rounded=1;whiteSpace=wrap;html=1;dashed=1;fillColor=#f5f5f5;strokeColor=#666666;" value="Webs corporativas + noticias&#xa;+ redes sociales" vertex="1">
+          <mxGeometry height="80" width="220" x="274" y="24" as="geometry" />
+        </mxCell>
+        <mxCell id="7qvGO8kN7DKlxgH0tU9M-273" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#82b366;fontColor=#82b366;verticalAlign=top;fontStyle=2;dashed=1;" value="2. Ingesta y orquestacion" vertex="1">
+          <mxGeometry height="358" width="508" x="1086.0042857142853" y="1652.0028571428568" as="geometry" />
+        </mxCell>
+        <mxCell id="7qvGO8kN7DKlxgH0tU9M-274" data-boundary="aws" data-kind="gateway" data-model-id="transfer" data-owner="Data Platform" data-properties="{&quot;owner&quot;:&quot;Data Platform&quot;,&quot;technology&quot;:&quot;AWS Transfer Family&quot;,&quot;trust_boundary&quot;:&quot;aws&quot;}" data-provenance="{&quot;path&quot;:&quot;/home/env/mscope-prueba/solucion-test-2/arquitectura.ir.json&quot;}" data-source-label="AWS Transfer Family&#xa;SFTP administrado" data-source-properties="{&quot;owner&quot;:&quot;Data Platform&quot;,&quot;technology&quot;:&quot;AWS Transfer Family&quot;,&quot;trust_boundary&quot;:&quot;aws&quot;}" parent="7qvGO8kN7DKlxgH0tU9M-273" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" value="AWS Transfer Family&#xa;SFTP administrado" vertex="1">
+          <mxGeometry height="70" width="190" x="24" y="24" as="geometry" />
+        </mxCell>
+        <mxCell id="7qvGO8kN7DKlxgH0tU9M-275" data-boundary="private" data-kind="gateway" data-model-id="batch-orchestration" data-owner="Data Platform" data-properties="{&quot;owner&quot;:&quot;Data Platform&quot;,&quot;technology&quot;:&quot;AWS Step Functions&quot;,&quot;trust_boundary&quot;:&quot;private&quot;,&quot;importance&quot;:4}" data-provenance="{&quot;path&quot;:&quot;/home/env/mscope-prueba/solucion-test-2/arquitectura.ir.json&quot;}" data-source-label="EventBridge + Step Functions Standard&#xa;Calendario, .sync, retry y auditoria" data-source-properties="{&quot;owner&quot;:&quot;Data Platform&quot;,&quot;technology&quot;:&quot;AWS Step Functions&quot;,&quot;trust_boundary&quot;:&quot;private&quot;,&quot;importance&quot;:4}" parent="7qvGO8kN7DKlxgH0tU9M-273" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" value="EventBridge + Step Functions Standard&#xa;Calendario, .sync, retry y auditoria" vertex="1">
+          <mxGeometry height="80" width="250" x="234" y="24" as="geometry" />
+        </mxCell>
+        <mxCell id="7qvGO8kN7DKlxgH0tU9M-276" data-boundary="private" data-kind="service" data-model-id="glue-ingestion" data-owner="Data Platform" data-properties="{&quot;owner&quot;:&quot;Data Platform&quot;,&quot;technology&quot;:&quot;AWS Glue&quot;,&quot;trust_boundary&quot;:&quot;private&quot;,&quot;importance&quot;:5}" data-provenance="{&quot;path&quot;:&quot;/home/env/mscope-prueba/solucion-test-2/arquitectura.ir.json&quot;}" data-source-label="AWS Glue JDBC + PySpark&#xa;Watermarks y extraccion incremental" data-source-properties="{&quot;owner&quot;:&quot;Data Platform&quot;,&quot;technology&quot;:&quot;AWS Glue&quot;,&quot;trust_boundary&quot;:&quot;private&quot;,&quot;importance&quot;:5}" parent="7qvGO8kN7DKlxgH0tU9M-273" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="AWS Glue JDBC + PySpark&#xa;Watermarks y extraccion incremental" vertex="1">
+          <mxGeometry height="80" width="230" x="254" y="134" as="geometry" />
+        </mxCell>
+        <mxCell id="7qvGO8kN7DKlxgH0tU9M-277" data-boundary="private" data-kind="queue" data-model-id="scrape-queue" data-owner="Data Platform" data-properties="{&quot;owner&quot;:&quot;Data Platform&quot;,&quot;technology&quot;:&quot;Amazon SQS&quot;,&quot;trust_boundary&quot;:&quot;private&quot;}" data-provenance="{&quot;path&quot;:&quot;/home/env/mscope-prueba/solucion-test-2/arquitectura.ir.json&quot;}" data-source-label="Amazon SQS + DLQ&#xa;Backpressure y aislamiento" data-source-properties="{&quot;owner&quot;:&quot;Data Platform&quot;,&quot;technology&quot;:&quot;Amazon SQS&quot;,&quot;trust_boundary&quot;:&quot;private&quot;}" parent="7qvGO8kN7DKlxgH0tU9M-273" style="shape=hexagon;perimeter=hexagonPerimeter2;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" value="Amazon SQS + DLQ&#xa;Backpressure y aislamiento" vertex="1">
+          <mxGeometry height="70" width="200" x="34" y="144" as="geometry" />
+        </mxCell>
+        <mxCell id="7qvGO8kN7DKlxgH0tU9M-278" data-boundary="private" data-kind="service" data-model-id="scrape-workers" data-owner="Data Platform" data-properties="{&quot;owner&quot;:&quot;Data Platform&quot;,&quot;technology&quot;:&quot;Amazon ECS on AWS Fargate&quot;,&quot;trust_boundary&quot;:&quot;private&quot;,&quot;importance&quot;:4}" data-provenance="{&quot;path&quot;:&quot;/home/env/mscope-prueba/solucion-test-2/arquitectura.ir.json&quot;}" data-source-label="ECS Fargate - scrapers&#xa;Rate limit por dominio + autoscaling" data-source-properties="{&quot;owner&quot;:&quot;Data Platform&quot;,&quot;technology&quot;:&quot;Amazon ECS on AWS Fargate&quot;,&quot;trust_boundary&quot;:&quot;private&quot;,&quot;importance&quot;:4}" parent="7qvGO8kN7DKlxgH0tU9M-273" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="ECS Fargate - scrapers&#xa;Rate limit por dominio + autoscaling" vertex="1">
+          <mxGeometry height="80" width="230" x="164" y="254" as="geometry" />
+        </mxCell>
+        <mxCell id="7qvGO8kN7DKlxgH0tU9M-279" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#d79b00;fontColor=#d79b00;verticalAlign=top;fontStyle=2;dashed=1;" value="3. Lakehouse gobernado" vertex="1">
+          <mxGeometry height="358" width="538" x="826.0042857142853" y="2022.0028571428568" as="geometry" />
+        </mxCell>
+        <mxCell id="7qvGO8kN7DKlxgH0tU9M-280" data-boundary="data" data-kind="database" data-model-id="raw-lake" data-owner="Data Platform" data-properties="{&quot;owner&quot;:&quot;Data Platform&quot;,&quot;technology&quot;:&quot;Amazon S3&quot;,&quot;trust_boundary&quot;:&quot;data&quot;,&quot;data_classification&quot;:&quot;confidential&quot;,&quot;importance&quot;:5}" data-provenance="{&quot;path&quot;:&quot;/home/env/mscope-prueba/solucion-test-2/arquitectura.ir.json&quot;}" data-source-label="Amazon S3 Raw&#xa;Inmutable, cifrado y reproducible" data-source-properties="{&quot;owner&quot;:&quot;Data Platform&quot;,&quot;technology&quot;:&quot;Amazon S3&quot;,&quot;trust_boundary&quot;:&quot;data&quot;,&quot;data_classification&quot;:&quot;confidential&quot;,&quot;importance&quot;:5}" parent="7qvGO8kN7DKlxgH0tU9M-279" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;fillColor=#d5e8d4;strokeColor=#82b366;" value="Amazon S3 Raw&#xa;Inmutable, cifrado y reproducible" vertex="1">
+          <mxGeometry height="80" width="220" x="284" y="24" as="geometry" />
+        </mxCell>
+        <mxCell id="7qvGO8kN7DKlxgH0tU9M-281" data-boundary="data" data-kind="service" data-model-id="glue-transform" data-owner="Data Platform" data-properties="{&quot;owner&quot;:&quot;Data Platform&quot;,&quot;technology&quot;:&quot;AWS Glue and Glue Data Quality&quot;,&quot;trust_boundary&quot;:&quot;data&quot;,&quot;importance&quot;:5}" data-provenance="{&quot;path&quot;:&quot;/home/env/mscope-prueba/solucion-test-2/arquitectura.ir.json&quot;}" data-source-label="AWS Glue PySpark + Data Quality&#xa;Normaliza, deduplica, resuelve y calcula" data-source-properties="{&quot;owner&quot;:&quot;Data Platform&quot;,&quot;technology&quot;:&quot;AWS Glue and Glue Data Quality&quot;,&quot;trust_boundary&quot;:&quot;data&quot;,&quot;importance&quot;:5}" parent="7qvGO8kN7DKlxgH0tU9M-279" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="AWS Glue PySpark + Data Quality&#xa;Normaliza, deduplica, resuelve y calcula" vertex="1">
+          <mxGeometry height="80" width="250" x="264" y="134" as="geometry" />
+        </mxCell>
+        <mxCell id="7qvGO8kN7DKlxgH0tU9M-282" data-boundary="data" data-kind="database" data-model-id="curated-lake" data-owner="Data Platform" data-properties="{&quot;owner&quot;:&quot;Data Platform&quot;,&quot;technology&quot;:&quot;Amazon S3 and Apache Iceberg&quot;,&quot;trust_boundary&quot;:&quot;data&quot;,&quot;data_classification&quot;:&quot;confidential&quot;,&quot;importance&quot;:5}" data-provenance="{&quot;path&quot;:&quot;/home/env/mscope-prueba/solucion-test-2/arquitectura.ir.json&quot;}" data-source-label="Amazon S3 / Apache Iceberg&#xa;Silver + Gold + documentos curados" data-source-properties="{&quot;owner&quot;:&quot;Data Platform&quot;,&quot;technology&quot;:&quot;Amazon S3 and Apache Iceberg&quot;,&quot;trust_boundary&quot;:&quot;data&quot;,&quot;data_classification&quot;:&quot;confidential&quot;,&quot;importance&quot;:5}" parent="7qvGO8kN7DKlxgH0tU9M-279" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;fillColor=#d5e8d4;strokeColor=#82b366;" value="Amazon S3 / Apache Iceberg&#xa;Silver + Gold + documentos curados" vertex="1">
+          <mxGeometry height="80" width="240" x="24" y="254" as="geometry" />
+        </mxCell>
+        <mxCell id="7qvGO8kN7DKlxgH0tU9M-283" data-boundary="security" data-kind="service" data-model-id="governance" data-owner="Data Governance" data-properties="{&quot;owner&quot;:&quot;Data Governance&quot;,&quot;technology&quot;:&quot;AWS Lake Formation&quot;,&quot;trust_boundary&quot;:&quot;security&quot;,&quot;importance&quot;:4}" data-provenance="{&quot;path&quot;:&quot;/home/env/mscope-prueba/solucion-test-2/arquitectura.ir.json&quot;}" data-source-label="Glue Data Catalog + Lake Formation&#xa;Catalogo y permisos por pais" data-source-properties="{&quot;owner&quot;:&quot;Data Governance&quot;,&quot;technology&quot;:&quot;AWS Lake Formation&quot;,&quot;trust_boundary&quot;:&quot;security&quot;,&quot;importance&quot;:4}" parent="7qvGO8kN7DKlxgH0tU9M-279" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" value="Glue Data Catalog + Lake Formation&#xa;Catalogo y permisos por pais" vertex="1">
+          <mxGeometry height="80" width="230" x="24" y="134" as="geometry" />
+        </mxCell>
+        <mxCell id="7qvGO8kN7DKlxgH0tU9M-284" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#9673a6;fontColor=#9673a6;verticalAlign=top;fontStyle=2;dashed=1;" value="4. Analitica y clasificacion" vertex="1">
+          <mxGeometry height="238" width="548" x="556.0042857142853" y="2512.0028571428566" as="geometry" />
+        </mxCell>
+        <mxCell id="7qvGO8kN7DKlxgH0tU9M-285" data-boundary="data" data-kind="database" data-model-id="redshift-marts" data-owner="Analytics" data-properties="{&quot;owner&quot;:&quot;Analytics&quot;,&quot;technology&quot;:&quot;Amazon Redshift&quot;,&quot;trust_boundary&quot;:&quot;data&quot;,&quot;importance&quot;:5,&quot;decision&quot;:&quot;Reuse first; test Serverless for isolation&quot;}" data-provenance="{&quot;path&quot;:&quot;/home/env/mscope-prueba/solucion-test-2/arquitectura.ir.json&quot;}" data-source-label="Amazon Redshift - marts serving&#xa;Reusar actual; aislar schemas y workload" data-source-properties="{&quot;owner&quot;:&quot;Analytics&quot;,&quot;technology&quot;:&quot;Amazon Redshift&quot;,&quot;trust_boundary&quot;:&quot;data&quot;,&quot;importance&quot;:5,&quot;decision&quot;:&quot;Reuse first; test Serverless for isolation&quot;}" parent="7qvGO8kN7DKlxgH0tU9M-284" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;fillColor=#d5e8d4;strokeColor=#82b366;" value="Amazon Redshift - marts serving&#xa;Reusar actual; aislar schemas y workload" vertex="1">
+          <mxGeometry height="80" width="250" x="24" y="24" as="geometry" />
+        </mxCell>
+        <mxCell id="7qvGO8kN7DKlxgH0tU9M-286" data-boundary="data" data-kind="service" data-model-id="scoring" data-owner="Data Science and Data Platform" data-properties="{&quot;owner&quot;:&quot;Data Science and Data Platform&quot;,&quot;technology&quot;:&quot;AWS Glue and Apache Spark&quot;,&quot;trust_boundary&quot;:&quot;data&quot;,&quot;importance&quot;:4}" data-provenance="{&quot;path&quot;:&quot;/home/env/mscope-prueba/solucion-test-2/arquitectura.ir.json&quot;}" data-source-label="Glue/PySpark scoring&#xa;Batch semanal + mini-batch afectado" data-source-properties="{&quot;owner&quot;:&quot;Data Science and Data Platform&quot;,&quot;technology&quot;:&quot;AWS Glue and Apache Spark&quot;,&quot;trust_boundary&quot;:&quot;data&quot;,&quot;importance&quot;:4}" parent="7qvGO8kN7DKlxgH0tU9M-284" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="Glue/PySpark scoring&#xa;Batch semanal + mini-batch afectado" vertex="1">
+          <mxGeometry height="80" width="230" x="294" y="24" as="geometry" />
+        </mxCell>
+        <mxCell id="7qvGO8kN7DKlxgH0tU9M-287" data-boundary="serving" data-kind="database" data-model-id="score-store" data-owner="Application" data-properties="{&quot;owner&quot;:&quot;Application&quot;,&quot;technology&quot;:&quot;Amazon DynamoDB&quot;,&quot;trust_boundary&quot;:&quot;serving&quot;,&quot;importance&quot;:5,&quot;access_pattern&quot;:&quot;GetItem by authorization partition and company_id&quot;}" data-provenance="{&quot;path&quot;:&quot;/home/env/mscope-prueba/solucion-test-2/arquitectura.ir.json&quot;}" data-source-label="Amazon DynamoDB&#xa;Ultimo score por pais/tenant + empresa" data-source-properties="{&quot;owner&quot;:&quot;Application&quot;,&quot;technology&quot;:&quot;Amazon DynamoDB&quot;,&quot;trust_boundary&quot;:&quot;serving&quot;,&quot;importance&quot;:5,&quot;access_pattern&quot;:&quot;GetItem by authorization partition and company_id&quot;}" parent="7qvGO8kN7DKlxgH0tU9M-284" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;fillColor=#d5e8d4;strokeColor=#82b366;" value="Amazon DynamoDB&#xa;Ultimo score por pais/tenant + empresa" vertex="1">
+          <mxGeometry height="80" width="240" x="154" y="134" as="geometry" />
+        </mxCell>
+        <mxCell id="7qvGO8kN7DKlxgH0tU9M-288" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#d6b656;fontColor=#d6b656;verticalAlign=top;fontStyle=2;dashed=1;" value="5. Aplicacion y GenAI" vertex="1">
+          <mxGeometry height="608" width="548" x="236.00428571428534" y="1892.0028571428568" as="geometry" />
+        </mxCell>
+        <mxCell id="7qvGO8kN7DKlxgH0tU9M-289" data-boundary="user" data-kind="actor" data-model-id="analysts" data-properties="{&quot;trust_boundary&quot;:&quot;user&quot;,&quot;importance&quot;:5}" data-provenance="{&quot;path&quot;:&quot;/home/env/mscope-prueba/solucion-test-2/arquitectura.ir.json&quot;}" data-source-label="Analistas financieros" data-source-properties="{&quot;trust_boundary&quot;:&quot;user&quot;,&quot;importance&quot;:5}" parent="7qvGO8kN7DKlxgH0tU9M-288" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="Analistas financieros" vertex="1">
+          <mxGeometry height="65" width="180" x="184" y="24" as="geometry" />
+        </mxCell>
+        <mxCell id="7qvGO8kN7DKlxgH0tU9M-290" data-boundary="edge" data-kind="gateway" data-model-id="web-edge" data-owner="Application" data-properties="{&quot;owner&quot;:&quot;Application&quot;,&quot;technology&quot;:&quot;Amazon CloudFront, AWS WAF, Amazon Cognito and Amazon S3&quot;,&quot;trust_boundary&quot;:&quot;edge&quot;,&quot;importance&quot;:5}" data-provenance="{&quot;path&quot;:&quot;/home/env/mscope-prueba/solucion-test-2/arquitectura.ir.json&quot;}" data-source-label="CloudFront + WAF + Cognito&#xa;React-Redux en S3 + JWT" data-source-properties="{&quot;owner&quot;:&quot;Application&quot;,&quot;technology&quot;:&quot;Amazon CloudFront, AWS WAF, Amazon Cognito and Amazon S3&quot;,&quot;trust_boundary&quot;:&quot;edge&quot;,&quot;importance&quot;:5}" parent="7qvGO8kN7DKlxgH0tU9M-288" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" value="CloudFront + WAF + Cognito&#xa;React-Redux en S3 + JWT" vertex="1">
+          <mxGeometry height="80" width="230" x="164" y="154" as="geometry" />
+        </mxCell>
+        <mxCell id="7qvGO8kN7DKlxgH0tU9M-291" data-boundary="application" data-kind="service" data-model-id="spring-api" data-owner="Application" data-properties="{&quot;owner&quot;:&quot;Application&quot;,&quot;technology&quot;:&quot;Amazon ECS on AWS Fargate and Application Load Balancer&quot;,&quot;trust_boundary&quot;:&quot;application&quot;,&quot;importance&quot;:5}" data-provenance="{&quot;path&quot;:&quot;/home/env/mscope-prueba/solucion-test-2/arquitectura.ir.json&quot;}" data-source-label="Spring Boot API en ECS Fargate&#xa;ALB, multi-AZ y autorizacion" data-source-properties="{&quot;owner&quot;:&quot;Application&quot;,&quot;technology&quot;:&quot;Amazon ECS on AWS Fargate and Application Load Balancer&quot;,&quot;trust_boundary&quot;:&quot;application&quot;,&quot;importance&quot;:5}" parent="7qvGO8kN7DKlxgH0tU9M-288" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="Spring Boot API en ECS Fargate&#xa;ALB, multi-AZ y autorizacion" vertex="1">
+          <mxGeometry height="80" width="240" x="154" y="264" as="geometry" />
+        </mxCell>
+        <mxCell id="7qvGO8kN7DKlxgH0tU9M-292" data-boundary="ai" data-kind="service" data-model-id="agent-runtime" data-owner="AI Platform" data-properties="{&quot;owner&quot;:&quot;AI Platform&quot;,&quot;technology&quot;:&quot;Amazon Bedrock AgentCore Runtime&quot;,&quot;trust_boundary&quot;:&quot;ai&quot;,&quot;importance&quot;:5,&quot;protocol&quot;:&quot;AG-UI&quot;}" data-provenance="{&quot;path&quot;:&quot;/home/env/mscope-prueba/solucion-test-2/arquitectura.ir.json&quot;}" data-source-label="Bedrock AgentCore Runtime (AG-UI)&#xa;Supervisor + agentes SQL y research" data-source-properties="{&quot;owner&quot;:&quot;AI Platform&quot;,&quot;technology&quot;:&quot;Amazon Bedrock AgentCore Runtime&quot;,&quot;trust_boundary&quot;:&quot;ai&quot;,&quot;importance&quot;:5,&quot;protocol&quot;:&quot;AG-UI&quot;}" parent="7qvGO8kN7DKlxgH0tU9M-288" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" value="Bedrock AgentCore Runtime (AG-UI)&#xa;Supervisor + agentes SQL y research" vertex="1">
+          <mxGeometry height="85" width="260" x="144" y="384" as="geometry" />
+        </mxCell>
+        <mxCell id="7qvGO8kN7DKlxgH0tU9M-293" data-boundary="ai" data-kind="gateway" data-model-id="agent-gateway" data-owner="AI Platform" data-properties="{&quot;owner&quot;:&quot;AI Platform&quot;,&quot;technology&quot;:&quot;Amazon Bedrock AgentCore Gateway&quot;,&quot;trust_boundary&quot;:&quot;ai&quot;,&quot;importance&quot;:4}" data-provenance="{&quot;path&quot;:&quot;/home/env/mscope-prueba/solucion-test-2/arquitectura.ir.json&quot;}" data-source-label="AgentCore Gateway + SQL tool&#xa;Vistas allowlist, limites y timeout" data-source-properties="{&quot;owner&quot;:&quot;AI Platform&quot;,&quot;technology&quot;:&quot;Amazon Bedrock AgentCore Gateway&quot;,&quot;trust_boundary&quot;:&quot;ai&quot;,&quot;importance&quot;:4}" parent="7qvGO8kN7DKlxgH0tU9M-288" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" value="AgentCore Gateway + SQL tool&#xa;Vistas allowlist, limites y timeout" vertex="1">
+          <mxGeometry height="80" width="240" x="24" y="504" as="geometry" />
+        </mxCell>
+        <mxCell id="7qvGO8kN7DKlxgH0tU9M-294" data-boundary="ai" data-kind="database" data-model-id="managed-kb" data-owner="AI Platform" data-properties="{&quot;owner&quot;:&quot;AI Platform&quot;,&quot;technology&quot;:&quot;Amazon Bedrock Managed Knowledge Bases&quot;,&quot;trust_boundary&quot;:&quot;ai&quot;,&quot;importance&quot;:4}" data-provenance="{&quot;path&quot;:&quot;/home/env/mscope-prueba/solucion-test-2/arquitectura.ir.json&quot;}" data-source-label="Bedrock Managed Knowledge Base&#xa;Retrieve con metadatos y citas" data-source-properties="{&quot;owner&quot;:&quot;AI Platform&quot;,&quot;technology&quot;:&quot;Amazon Bedrock Managed Knowledge Bases&quot;,&quot;trust_boundary&quot;:&quot;ai&quot;,&quot;importance&quot;:4}" parent="7qvGO8kN7DKlxgH0tU9M-288" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" value="Bedrock Managed Knowledge Base&#xa;Retrieve con metadatos y citas" vertex="1">
+          <mxGeometry height="80" width="240" x="284" y="504" as="geometry" />
+        </mxCell>
+        <mxCell id="7qvGO8kN7DKlxgH0tU9M-295" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#b85450;fontColor=#b85450;verticalAlign=top;fontStyle=2;dashed=1;" value="6. Operacion transversal" vertex="1">
+          <mxGeometry height="268" width="538" x="1776.0042857142853" y="1512.0028571428568" as="geometry" />
+        </mxCell>
+        <mxCell id="7qvGO8kN7DKlxgH0tU9M-296" data-boundary="security" data-kind="service" data-model-id="security" data-owner="Security" data-properties="{&quot;owner&quot;:&quot;Security&quot;,&quot;trust_boundary&quot;:&quot;security&quot;,&quot;importance&quot;:5,&quot;intentional_orphan&quot;:true,&quot;scope&quot;:&quot;cross-cutting&quot;}" data-provenance="{&quot;path&quot;:&quot;/home/env/mscope-prueba/solucion-test-2/arquitectura.ir.json&quot;}" data-source-label="KMS + IAM + Secrets Manager + CloudTrail&#xa;Minimo privilegio y auditoria" data-source-properties="{&quot;owner&quot;:&quot;Security&quot;,&quot;trust_boundary&quot;:&quot;security&quot;,&quot;importance&quot;:5,&quot;intentional_orphan&quot;:true,&quot;scope&quot;:&quot;cross-cutting&quot;}" parent="7qvGO8kN7DKlxgH0tU9M-295" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" value="KMS + IAM + Secrets Manager + CloudTrail&#xa;Minimo privilegio y auditoria" vertex="1">
+          <mxGeometry height="80" width="260" x="254" y="24" as="geometry" />
+        </mxCell>
+        <mxCell id="7qvGO8kN7DKlxgH0tU9M-297" data-boundary="operations" data-kind="service" data-model-id="observability" data-owner="Platform" data-properties="{&quot;owner&quot;:&quot;Platform&quot;,&quot;technology&quot;:&quot;Amazon CloudWatch and OpenTelemetry&quot;,&quot;trust_boundary&quot;:&quot;operations&quot;,&quot;importance&quot;:5,&quot;intentional_orphan&quot;:true,&quot;scope&quot;:&quot;cross-cutting&quot;}" data-provenance="{&quot;path&quot;:&quot;/home/env/mscope-prueba/solucion-test-2/arquitectura.ir.json&quot;}" data-source-label="CloudWatch + OpenTelemetry&#xa;Metricas, logs, trazas y alarmas" data-source-properties="{&quot;owner&quot;:&quot;Platform&quot;,&quot;technology&quot;:&quot;Amazon CloudWatch and OpenTelemetry&quot;,&quot;trust_boundary&quot;:&quot;operations&quot;,&quot;importance&quot;:5,&quot;intentional_orphan&quot;:true,&quot;scope&quot;:&quot;cross-cutting&quot;}" parent="7qvGO8kN7DKlxgH0tU9M-295" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" value="CloudWatch + OpenTelemetry&#xa;Metricas, logs, trazas y alarmas" vertex="1">
+          <mxGeometry height="80" width="230" x="144" y="164" as="geometry" />
+        </mxCell>
+        <mxCell id="7qvGO8kN7DKlxgH0tU9M-298" data-boundary="operations" data-kind="service" data-model-id="cicd" data-owner="Platform" data-properties="{&quot;owner&quot;:&quot;Platform&quot;,&quot;technology&quot;:&quot;Amazon ECR and CI/CD&quot;,&quot;trust_boundary&quot;:&quot;operations&quot;,&quot;importance&quot;:3,&quot;intentional_orphan&quot;:true,&quot;scope&quot;:&quot;cross-cutting&quot;}" data-provenance="{&quot;path&quot;:&quot;/home/env/mscope-prueba/solucion-test-2/arquitectura.ir.json&quot;}" data-source-label="CI/CD + Amazon ECR&#xa;Tests, escaneo y rollback" data-source-properties="{&quot;owner&quot;:&quot;Platform&quot;,&quot;technology&quot;:&quot;Amazon ECR and CI/CD&quot;,&quot;trust_boundary&quot;:&quot;operations&quot;,&quot;importance&quot;:3,&quot;intentional_orphan&quot;:true,&quot;scope&quot;:&quot;cross-cutting&quot;}" parent="7qvGO8kN7DKlxgH0tU9M-295" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="CI/CD + Amazon ECR&#xa;Tests, escaneo y rollback" vertex="1">
+          <mxGeometry height="70" width="210" x="24" y="34" as="geometry" />
+        </mxCell>
+        <mxCell id="7qvGO8kN7DKlxgH0tU9M-299" data-kind="sync" data-model-id="source-transfer" data-properties="{&quot;protocol&quot;:&quot;SFTP&quot;}" data-source-label="SFTP semanal" data-source-properties="{&quot;protocol&quot;:&quot;SFTP&quot;}" edge="1" parent="1" source="7qvGO8kN7DKlxgH0tU9M-271" style="endArrow=classic;html=1;rounded=0;" target="7qvGO8kN7DKlxgH0tU9M-274" value="SFTP semanal">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1290.0042857142853" y="1616.0028571428568" />
+              <mxPoint x="1290.0042857142853" y="1666.0028571428568" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="7qvGO8kN7DKlxgH0tU9M-300" data-kind="sync" data-model-id="source-glue" data-properties="{&quot;data&quot;:&quot;structured&quot;}" data-source-label="JDBC / UNLOAD incremental" data-source-properties="{&quot;data&quot;:&quot;structured&quot;}" edge="1" parent="1" source="7qvGO8kN7DKlxgH0tU9M-271" style="endArrow=classic;html=1;rounded=0;" target="7qvGO8kN7DKlxgH0tU9M-276" value="JDBC / UNLOAD incremental">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1310.0042857142853" y="1676.0028571428568" />
+              <mxPoint x="1310.0042857142853" y="1776.0028571428568" />
+              <mxPoint x="1310.0042857142853" y="1776.0028571428568" />
+              <mxPoint x="1310.0042857142853" y="1776.0028571428568" />
+              <mxPoint x="1410.0042857142853" y="1776.0028571428568" />
+              <mxPoint x="1410.0042857142853" y="1776.0028571428568" />
+              <mxPoint x="1410.0042857142853" y="1776.0028571428568" />
+              <mxPoint x="1410.0042857142853" y="1776.0028571428568" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="7qvGO8kN7DKlxgH0tU9M-301" data-kind="control" data-model-id="orchestrate-glue" data-properties="{&quot;workflow&quot;:&quot;Standard&quot;}" data-source-label="job .sync + retry" data-source-properties="{&quot;workflow&quot;:&quot;Standard&quot;}" edge="1" parent="1" source="7qvGO8kN7DKlxgH0tU9M-275" style="endArrow=classic;html=1;rounded=0;" target="7qvGO8kN7DKlxgH0tU9M-276" value="job .sync + retry">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1490.0042857142853" y="1756.0028571428568" />
+              <mxPoint x="1490.0042857142853" y="1776.0028571428568" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="7qvGO8kN7DKlxgH0tU9M-302" data-kind="async" data-model-id="orchestrate-scrape" data-properties="{&quot;async&quot;:true,&quot;isolates_failure&quot;:true}" data-source-label="URLs priorizadas" data-source-properties="{&quot;async&quot;:true,&quot;isolates_failure&quot;:true}" edge="1" parent="1" source="7qvGO8kN7DKlxgH0tU9M-275" style="endArrow=classic;html=1;rounded=0;" target="7qvGO8kN7DKlxgH0tU9M-277" value="URLs priorizadas">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1330.0042857142853" y="1786.0028571428568" />
+              <mxPoint x="1330.0042857142853" y="1826.0028571428568" />
+              <mxPoint x="1330.0042857142853" y="1826.0028571428568" />
+              <mxPoint x="1330.0042857142853" y="1826.0028571428568" />
+              <mxPoint x="1330.0042857142853" y="1826.0028571428568" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="7qvGO8kN7DKlxgH0tU9M-303" data-kind="async" data-model-id="queue-workers" data-properties="{&quot;async&quot;:true,&quot;isolates_failure&quot;:true}" data-source-label="trabajo desacoplado" data-source-properties="{&quot;async&quot;:true,&quot;isolates_failure&quot;:true}" edge="1" parent="1" source="7qvGO8kN7DKlxgH0tU9M-277" style="endArrow=classic;html=1;rounded=0;" target="7qvGO8kN7DKlxgH0tU9M-278" value="trabajo desacoplado">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1280.0042857142853" y="1866.0028571428568" />
+              <mxPoint x="1280.0042857142853" y="1896.0028571428568" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="7qvGO8kN7DKlxgH0tU9M-304" data-kind="sync" data-model-id="web-workers" data-properties="{&quot;protocol&quot;:&quot;HTTPS&quot;}" data-source-label="HTTPS con rate limit" data-source-properties="{&quot;protocol&quot;:&quot;HTTPS&quot;}" edge="1" parent="1" source="7qvGO8kN7DKlxgH0tU9M-272" style="endArrow=classic;html=1;rounded=0;" target="7qvGO8kN7DKlxgH0tU9M-278" value="HTTPS con rate limit">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1660.0042857142853" y="1716.0028571428568" />
+              <mxPoint x="1660.0042857142853" y="1946.0028571428568" />
+              <mxPoint x="1660.0042857142853" y="1946.0028571428568" />
+              <mxPoint x="1660.0042857142853" y="1946.0028571428568" />
+              <mxPoint x="1490.0042857142853" y="1946.0028571428568" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="7qvGO8kN7DKlxgH0tU9M-305" data-kind="async" data-model-id="transfer-raw" data-properties="{&quot;async&quot;:true}" data-source-label="CSV / Parquet" data-source-properties="{&quot;async&quot;:true}" edge="1" parent="1" source="7qvGO8kN7DKlxgH0tU9M-274" style="endArrow=classic;html=1;rounded=0;" target="7qvGO8kN7DKlxgH0tU9M-280" value="CSV / Parquet">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1110.0042857142853" y="1746.0028571428568" />
+              <mxPoint x="1110.0042857142853" y="2036.0028571428568" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="7qvGO8kN7DKlxgH0tU9M-306" data-kind="async" data-model-id="glue-raw" data-properties="{&quot;async&quot;:true}" data-source-label="snapshot + watermark" data-source-properties="{&quot;async&quot;:true}" edge="1" parent="1" source="7qvGO8kN7DKlxgH0tU9M-276" style="endArrow=classic;html=1;rounded=0;" target="7qvGO8kN7DKlxgH0tU9M-280" value="snapshot + watermark">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1520.0042857142853" y="1946.0028571428568" />
+              <mxPoint x="1520.0042857142853" y="2086.0028571428566" />
+              <mxPoint x="1520.0042857142853" y="2086.0028571428566" />
+              <mxPoint x="1520.0042857142853" y="2086.0028571428566" />
+              <mxPoint x="1340.0042857142853" y="2086.0028571428566" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="7qvGO8kN7DKlxgH0tU9M-307" data-kind="async" data-model-id="workers-raw" data-properties="{&quot;async&quot;:true}" data-source-label="contenido + procedencia" data-source-properties="{&quot;async&quot;:true}" edge="1" parent="1" source="7qvGO8kN7DKlxgH0tU9M-278" style="endArrow=classic;html=1;rounded=0;" target="7qvGO8kN7DKlxgH0tU9M-280" value="contenido + procedencia">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1290.0042857142853" y="1986.0028571428568" />
+              <mxPoint x="1290.0042857142853" y="2036.0028571428568" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="7qvGO8kN7DKlxgH0tU9M-308" data-kind="async" data-model-id="raw-transform" data-properties="{&quot;async&quot;:true}" data-source-label="incrementos" data-source-properties="{&quot;async&quot;:true}" edge="1" parent="1" source="7qvGO8kN7DKlxgH0tU9M-280" style="endArrow=classic;html=1;rounded=0;" target="7qvGO8kN7DKlxgH0tU9M-281" value="incrementos">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1220.0042857142853" y="2126.0028571428566" />
+              <mxPoint x="1220.0042857142853" y="2146.0028571428566" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="7qvGO8kN7DKlxgH0tU9M-309" data-kind="sync" data-model-id="transform-curated" data-properties="{&quot;data&quot;:&quot;structured and documents&quot;}" data-source-label="MERGE + cuarentena" data-source-properties="{&quot;data&quot;:&quot;structured and documents&quot;}" edge="1" parent="1" source="7qvGO8kN7DKlxgH0tU9M-281" style="endArrow=classic;html=1;rounded=0;" target="7qvGO8kN7DKlxgH0tU9M-282" value="MERGE + cuarentena">
+          <mxGeometry relative="1" x="0.2672" as="geometry">
+            <mxPoint as="offset" />
+            <Array as="points">
+              <mxPoint x="1090.0042857142853" y="2196.0028571428566" />
+              <mxPoint x="1080.0042857142853" y="2196.0028571428566" />
+              <mxPoint x="1080.0042857142853" y="2196.0028571428566" />
+              <mxPoint x="1080.0042857142853" y="2196.0028571428566" />
+              <mxPoint x="1080.0042857142853" y="2266.0028571428566" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="7qvGO8kN7DKlxgH0tU9M-310" data-kind="control" data-model-id="govern-curated" data-properties="{&quot;data_classification&quot;:&quot;confidential&quot;}" data-source-label="catalogo + permisos" data-source-properties="{&quot;data_classification&quot;:&quot;confidential&quot;}" edge="1" parent="1" source="7qvGO8kN7DKlxgH0tU9M-283" style="endArrow=classic;html=1;rounded=0;" target="7qvGO8kN7DKlxgH0tU9M-282" value="catalogo + permisos">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="960.0042857142853" y="2236.0028571428566" />
+              <mxPoint x="960.0042857142853" y="2266.0028571428566" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="7qvGO8kN7DKlxgH0tU9M-311" data-kind="async" data-model-id="curated-redshift" data-properties="{&quot;async&quot;:true}" data-source-label="Gold incremental" data-source-properties="{&quot;async&quot;:true}" edge="1" parent="1" source="7qvGO8kN7DKlxgH0tU9M-282" style="endArrow=classic;html=1;rounded=0;" target="7qvGO8kN7DKlxgH0tU9M-285" value="Gold incremental">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="820.0042857142853" y="2326.0028571428566" />
+              <mxPoint x="810.0042857142853" y="2326.0028571428566" />
+              <mxPoint x="810.0042857142853" y="2326.0028571428566" />
+              <mxPoint x="810.0042857142853" y="2326.0028571428566" />
+              <mxPoint x="810.0042857142853" y="2516.0028571428566" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="7qvGO8kN7DKlxgH0tU9M-312" data-kind="async" data-model-id="curated-scoring" data-properties="{&quot;async&quot;:true}" data-source-label="features versionadas" data-source-properties="{&quot;async&quot;:true}" edge="1" parent="1" source="7qvGO8kN7DKlxgH0tU9M-282" style="endArrow=classic;html=1;rounded=0;" target="7qvGO8kN7DKlxgH0tU9M-286" value="features versionadas">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="970.0042857142853" y="2356.0028571428566" />
+              <mxPoint x="970.0042857142853" y="2516.0028571428566" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="7qvGO8kN7DKlxgH0tU9M-313" data-kind="async" data-model-id="curated-kb" data-properties="{&quot;async&quot;:true}" data-source-label="sync documentos curados" data-source-properties="{&quot;async&quot;:true}" edge="1" parent="1" source="7qvGO8kN7DKlxgH0tU9M-282" style="endArrow=classic;html=1;rounded=0;exitX=0;exitY=0;exitDx=0;exitDy=27.5;exitPerimeter=0;" target="7qvGO8kN7DKlxgH0tU9M-294" value="sync documentos curados">
+          <mxGeometry relative="1" x="-0.0036" as="geometry">
+            <mxPoint as="offset" />
+            <Array as="points">
+              <mxPoint x="780.0042857142853" y="2285.0028571428566" />
+              <mxPoint x="700.0042857142853" y="2285.0028571428566" />
+              <mxPoint x="700.0042857142853" y="2285.0028571428566" />
+              <mxPoint x="700.0042857142853" y="2365.0028571428566" />
+            </Array>
+            <mxPoint x="850.0042859999999" y="2288.6870676260387" as="sourcePoint" />
+            <mxPoint x="688.0042857142853" y="2375.0028571428566" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="7qvGO8kN7DKlxgH0tU9M-314" data-kind="async" data-model-id="scoring-store" data-properties="{&quot;async&quot;:true}" data-source-label="upsert condicionado por version" data-source-properties="{&quot;async&quot;:true}" edge="1" parent="1" source="7qvGO8kN7DKlxgH0tU9M-286" style="endArrow=classic;html=1;rounded=0;" target="7qvGO8kN7DKlxgH0tU9M-287" value="upsert condicionado por version">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="900.0042857142853" y="2616.0028571428566" />
+              <mxPoint x="900.0042857142853" y="2636.0028571428566" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="7qvGO8kN7DKlxgH0tU9M-315" data-kind="sync" data-model-id="analyst-web" data-properties="{&quot;protocol&quot;:&quot;HTTPS&quot;}" data-source-label="HTTPS" data-source-properties="{&quot;protocol&quot;:&quot;HTTPS&quot;}" edge="1" parent="1" source="7qvGO8kN7DKlxgH0tU9M-289" style="endArrow=classic;html=1;rounded=0;" target="7qvGO8kN7DKlxgH0tU9M-290" value="HTTPS">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="510.00428571428534" y="1976.0028571428568" />
+              <mxPoint x="510.00428571428534" y="2036.0028571428568" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="7qvGO8kN7DKlxgH0tU9M-316" data-kind="sync" data-model-id="web-api" data-properties="{&quot;protocol&quot;:&quot;HTTPS&quot;}" data-source-label="HTTPS + JWT" data-source-properties="{&quot;protocol&quot;:&quot;HTTPS&quot;}" edge="1" parent="1" source="7qvGO8kN7DKlxgH0tU9M-290" style="endArrow=classic;html=1;rounded=0;" target="7qvGO8kN7DKlxgH0tU9M-291" value="HTTPS + JWT">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="510.00428571428534" y="2126.0028571428566" />
+              <mxPoint x="510.00428571428534" y="2146.0028571428566" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="7qvGO8kN7DKlxgH0tU9M-317" data-kind="sync" data-model-id="api-score" data-properties="{&quot;timeout&quot;:&quot;classification end-to-end p95 &lt;500ms&quot;}" data-source-label="GetItem / BatchGetItem" data-source-properties="{&quot;timeout&quot;:&quot;classification end-to-end p95 &lt;500ms&quot;}" edge="1" parent="1" source="7qvGO8kN7DKlxgH0tU9M-291" style="endArrow=classic;html=1;rounded=0;" target="7qvGO8kN7DKlxgH0tU9M-287" value="GetItem / BatchGetItem">
+          <mxGeometry relative="1" x="-0.1464" as="geometry">
+            <mxPoint as="offset" />
+            <Array as="points">
+              <mxPoint x="730.0042857142853" y="2186.0028571428566" />
+              <mxPoint x="840.0042857142853" y="2186.0028571428566" />
+              <mxPoint x="840.0042857142853" y="2186.0028571428566" />
+              <mxPoint x="840.0042857142853" y="2186.0028571428566" />
+              <mxPoint x="840.0042857142853" y="2636.0028571428566" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="7qvGO8kN7DKlxgH0tU9M-318" data-kind="sync" data-model-id="api-redshift" data-properties="{&quot;data&quot;:&quot;structured&quot;}" data-source-label="dashboards y analitica" data-source-properties="{&quot;data&quot;:&quot;structured&quot;}" edge="1" parent="1" source="7qvGO8kN7DKlxgH0tU9M-291" style="endArrow=classic;html=1;rounded=0;" target="7qvGO8kN7DKlxgH0tU9M-285" value="dashboards y analitica">
+          <mxGeometry relative="1" x="0.1459" as="geometry">
+            <mxPoint as="offset" />
+            <Array as="points">
+              <mxPoint x="700.0042857142853" y="2216.0028571428566" />
+              <mxPoint x="780.0042857142853" y="2216.0028571428566" />
+              <mxPoint x="780.0042857142853" y="2216.0028571428566" />
+              <mxPoint x="780.0042857142853" y="2216.0028571428566" />
+              <mxPoint x="780.0042857142853" y="2516.0028571428566" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="7qvGO8kN7DKlxgH0tU9M-319" data-kind="sync" data-model-id="api-agent" data-properties="{&quot;protocol&quot;:&quot;AG-UI&quot;}" data-source-label="chat streaming AG-UI" data-source-properties="{&quot;protocol&quot;:&quot;AG-UI&quot;}" edge="1" parent="1" source="7qvGO8kN7DKlxgH0tU9M-291" style="endArrow=classic;html=1;rounded=0;" target="7qvGO8kN7DKlxgH0tU9M-292" value="chat streaming AG-UI">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="510.00428571428534" y="2236.0028571428566" />
+              <mxPoint x="510.00428571428534" y="2266.0028571428566" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="7qvGO8kN7DKlxgH0tU9M-320" data-kind="sync" data-model-id="agent-kb" data-properties="{&quot;data&quot;:&quot;unstructured&quot;}" data-source-label="Retrieve + citas" data-source-properties="{&quot;data&quot;:&quot;unstructured&quot;}" edge="1" parent="1" source="7qvGO8kN7DKlxgH0tU9M-292" style="endArrow=classic;html=1;rounded=0;" target="7qvGO8kN7DKlxgH0tU9M-294" value="Retrieve + citas">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="580.0042857142853" y="2356.0028571428566" />
+              <mxPoint x="580.0042857142853" y="2386.0028571428566" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="7qvGO8kN7DKlxgH0tU9M-321" data-kind="sync" data-model-id="agent-tools" data-properties="{&quot;protocol&quot;:&quot;MCP&quot;}" data-source-label="MCP tools allowlist" data-source-properties="{&quot;protocol&quot;:&quot;MCP&quot;}" edge="1" parent="1" source="7qvGO8kN7DKlxgH0tU9M-292" style="endArrow=classic;html=1;rounded=0;" target="7qvGO8kN7DKlxgH0tU9M-293" value="MCP tools allowlist">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="440.00428571428534" y="2356.0028571428566" />
+              <mxPoint x="440.00428571428534" y="2386.0028571428566" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="7qvGO8kN7DKlxgH0tU9M-322" data-kind="sync" data-model-id="tool-redshift" data-properties="{&quot;timeout&quot;:&quot;bounded query&quot;,&quot;data&quot;:&quot;structured&quot;}" data-source-label="plantillas / vistas read-only" data-source-properties="{&quot;timeout&quot;:&quot;bounded query&quot;,&quot;data&quot;:&quot;structured&quot;}" edge="1" parent="1" source="7qvGO8kN7DKlxgH0tU9M-293" style="endArrow=classic;html=1;rounded=0;" target="7qvGO8kN7DKlxgH0tU9M-285" value="plantillas / vistas read-only">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="380.00428571428534" y="2516.0028571428566" />
+              <mxPoint x="380.00428571428534" y="2576.0028571428566" />
+              <mxPoint x="380.00428571428534" y="2576.0028571428566" />
+              <mxPoint x="380.00428571428534" y="2576.0028571428566" />
+              <mxPoint x="570.0042857142853" y="2576.0028571428566" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="7qvGO8kN7DKlxgH0tU9M-323" data-kind="control" data-model-id="security-observability" data-properties="{}" data-source-label="cifrado y auditoria" data-source-properties="{}" edge="1" parent="1" source="7qvGO8kN7DKlxgH0tU9M-296" style="endArrow=classic;html=1;rounded=0;" target="7qvGO8kN7DKlxgH0tU9M-297" value="cifrado y auditoria">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="2090.0042857142853" y="1616.0028571428568" />
+              <mxPoint x="2090.0042857142853" y="1666.0028571428568" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="7qvGO8kN7DKlxgH0tU9M-324" data-kind="control" data-model-id="cicd-observability" data-properties="{}" data-source-label="versiones y despliegues" data-source-properties="{}" edge="1" parent="1" source="7qvGO8kN7DKlxgH0tU9M-298" style="endArrow=classic;html=1;rounded=0;" target="7qvGO8kN7DKlxgH0tU9M-297" value="versiones y despliegues">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1960.0042857142853" y="1616.0028571428568" />
+              <mxPoint x="1960.0042857142853" y="1666.0028571428568" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
